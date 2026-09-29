@@ -1,6 +1,11 @@
 import pandas as pd
 import streamlit as st
 
+st.set_page_config(
+    page_title="Table of data",
+    layout="wide",
+)
+
 @st.cache_data
 def load_data():
     df = pd.read_csv("Project/data/reservoirs.csv")
