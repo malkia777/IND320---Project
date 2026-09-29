@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 st.set_page_config(
     page_title="Plots",
