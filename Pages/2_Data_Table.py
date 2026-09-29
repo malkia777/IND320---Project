@@ -10,8 +10,9 @@ st.title("Table of the data")
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/reservoirs.csv")
-
+    df = pd.read_csv("Project/data/reservoirs.csv")
+    
+    
     df = df.rename(columns={
         'dato_Id': 'Date', "omrType": "Area_type", "omrnr": "Area_number",
         "iso_aar": "ISO_year", "iso_uke": "ISO_week",
@@ -41,6 +42,7 @@ value_cols = [
     "Filling_level_prev_week", "Change_filling_level",
 ]
 
+# Reshape: one row per column, its values (first month) as a list.
 table = pd.DataFrame({
     "Column": value_cols,
     "First month values": [first_month[col].tolist() for col in value_cols],
