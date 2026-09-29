@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import matplotlib as plt
 
 st.set_page_config(
     page_title="Plots",
@@ -31,17 +32,16 @@ def load_data():
 
 df = load_data()
 
-# From the notebook: filter to one area so "a column" means one
-# consistent time series, not 9 overlapping regions mixed together.
 area = df[df["Area_type"] == "NO"].sort_values("Date")
 
-value_cols = [
-    "Filling_level", "Capacity_TWh", "Filling_TWh",
-    "Filling_level_prev_week", "Change_filling_level",
-]
+# All CSV columns except Date itself (Date is the x-axis, not a
+# plottable series) are offered in the dropdown, per the spec's
+# "any single column in the CSV."
+all_cols = [c for c in df.columns if c != "Date"]
+numeric_cols = [c for c in all_cols if pd.api.types.is_numeric_dtype(area[c])]
 
 # --- Streamlit-specific: widgets for column and month selection ---
-col_choice = st.selectbox("Column to plot", options=["All columns"] + value_cols)
+col_choice = st.selectbox("Column to plot", options=["All columns"] + all_cols)
 
 # build the list of months present in the data, for the slider's options
 months = pd.date_range(area["Date"].min(), area["Date"].max(), freq="MS")
@@ -61,7 +61,9 @@ subset = area[(area["Date"] >= start_date) & (area["Date"] <= end_date)]
 # --- From the notebook: normalize columns to 0-1 so they share an axis
 # despite having different units/scales (Capacity_TWh excluded, since
 # it's constant within one area and would divide by zero) ---
-normalize_cols = ["Filling_level", "Filling_TWh", "Filling_level_prev_week", "Change_filling_level"]
+normalize_cols = [c for c in ["Filling_level", "Filling_TWh",
+                               "Filling_level_prev_week", "Change_filling_level"]
+                   if c in numeric_cols]
 
 # --- Streamlit-specific: render the plot based on the widget choices ---
 fig, ax = plt.subplots(figsize=(10, 5))
@@ -75,10 +77,22 @@ if col_choice == "All columns":
     ax.set_ylabel("Normalized value (0-1)")
     ax.legend()
     ax.set_title("All columns (normalized), Norway")
-else:
+    st.pyplot(fig)
+
+elif col_choice in numeric_cols:
     ax.plot(subset["Date"], subset[col_choice], linewidth=1.2, color="tab:blue")
+    ax.set_xlabel("Date")
     ax.set_ylabel(col_choice)
     ax.set_title(f"{col_choice}, Norway")
+    st.pyplot(fig)
 
-ax.set_xlabel("Date")
-st.pyplot(fig)
+else:
+    # Non-numeric column selected (e.g. Area_type, Next_publishdate):
+    # not meaningfully plottable as a line series, so show a message
+    # instead of crashing or drawing a nonsensical chart.
+    plt.close(fig)
+    st.info(
+        f"'{col_choice}' is not a numeric column, so it can't be shown "
+        "as a line plot. Try a measurement column instead."
+    )
+    st.write(subset[["Date", col_choice]])
