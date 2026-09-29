@@ -11,7 +11,7 @@ st.title("Plots of the data")
 
 @st.cache_data
 def load_data():
-    df_file = pd.read_csv("data/reservoirs.csv")  # relative path (works locally and deployed)
+    df = pd.read_csv("Project/data/reservoirs.csv")
 
     df = df_file.copy()  # work on a copy, not the original read
 
