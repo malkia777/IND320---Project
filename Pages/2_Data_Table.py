@@ -6,6 +6,8 @@ st.set_page_config(
     layout="wide",
 )
 
+st.title("Table of the data")
+
 @st.cache_data
 def load_data():
     df = pd.read_csv("Project/data/reservoirs.csv")
