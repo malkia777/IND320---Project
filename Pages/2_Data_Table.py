@@ -37,15 +37,15 @@ first_month_start = area["Date"].min()
 first_month_end = first_month_start + pd.DateOffset(months=1)
 first_month = area[(area["Date"] >= first_month_start) & (area["Date"] < first_month_end)]
 
-value_cols = [
-    "Filling_level", "Capacity_TWh", "Filling_TWh",
-    "Filling_level_prev_week", "Change_filling_level",
-]
+def to_values(col):
+    series = first_month[col]
+    if pd.api.types.is_numeric_dtype(series):
+        return series.tolist()
+    return []  # non-numeric columns get no sparkline
 
-# Reshape: one row per column, its values (first month) as a list.
 table = pd.DataFrame({
-    "Column": value_cols,
-    "First month values": [first_month[col].tolist() for col in value_cols],
+    "Column": df.columns,
+    "First month values": [to_values(col) for col in df.columns],
 })
 
 st.write(f"Showing area: NO, first month starting {first_month_start.date()}")
@@ -54,8 +54,7 @@ st.dataframe(
     table,
     column_config={
         "First month values": st.column_config.LineChartColumn(
-            "First month values",
-            width="medium",
+            "First month values", width="medium",
         ),
     },
     hide_index=True,
