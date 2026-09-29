@@ -5,8 +5,6 @@ import streamlit as st
 def load_data():
     df_file = pd.read_csv("data/reservoirs.csv") 
     
-    df = df_file.copy()
-
     df = df.rename(columns={
         'dato_Id': 'Date', "omrType": "Area_type", "omrnr": "Area_number",
         "iso_aar": "ISO_year", "iso_uke": "ISO_week",
