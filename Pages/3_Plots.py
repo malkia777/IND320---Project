@@ -3,7 +3,8 @@ import streamlit as st
 
 @st.cache_data
 def load_data():
-    df_file = pd.read_csv("data/reservoirs.csv") 
+    df = pd.read_csv("Project/data/reservoirs.csv")
+    
     
     df = df.rename(columns={
         'dato_Id': 'Date', "omrType": "Area_type", "omrnr": "Area_number",
@@ -15,13 +16,7 @@ def load_data():
         "endring_fyllingsgrad": "Change_filling_level",
     })
 
-    df["Date"] = pd.to_datetime(df["Date"], format="ISO8601", errors="coerce")
-    df["Next_publishdate"] = pd.to_datetime(df["Next_publishdate"], format="ISO8601", errors="coerce")
-
-    df = df.sort_values("Date")
-
     return df
 
 df = load_data()
-
 
