@@ -41,7 +41,7 @@ def to_values(col):
     series = first_month[col]
     if pd.api.types.is_numeric_dtype(series):
         return series.tolist()
-    return []  # non-numeric columns get no sparkline
+    return [] 
 
 table = pd.DataFrame({
     "Column": df.columns,
