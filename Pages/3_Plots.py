@@ -13,8 +13,6 @@ st.title("Plots of the data")
 def load_data():
     df = pd.read_csv("Project/data/reservoirs.csv")
 
-    df = df_file.copy()  # work on a copy, not the original read
-
     # renaming the columns of the dataset (same mapping as the notebook)
     df = df.rename(columns={
         'dato_Id': 'Date', "omrType": "Area_type", "omrnr": "Area_number",
