@@ -3,7 +3,7 @@ import streamlit as st
 
 @st.cache_data
 def load_data():
-    df_file = pd.read_csv("Project/data/reservoirs.csv")
+    df = pd.read_csv("Project/data/reservoirs.csv")
     
     
     df = df.rename(columns={
