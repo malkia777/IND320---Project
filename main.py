@@ -7,7 +7,7 @@ st.set_page_config(
  
 
 pages = [
-    st.Page("main.py", title="Main")
+    st.Page("main.py", title="Main"),
     st.Page("Pages/2_Data_Table.py", title="Data Table"),
     st.Page("Pages/3_Plots.py", title="Plots"),
     st.Page("Pages/4_Page_Four.py", title="Page 4"),
@@ -19,6 +19,7 @@ navigation = st.navigation(pages, position="sidebar")
 st.title("IND320 - Reservoirs Project")
  
 st.write(
+  
     """
     Welcome to the IND320 Reservoirs Project.
  
