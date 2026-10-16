@@ -1,10 +1,6 @@
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(
-    page_title="Table of data",
-    layout="wide",
-)
 
 st.title("Table of the data")
 
