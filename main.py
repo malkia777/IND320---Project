@@ -23,4 +23,4 @@ st.markdown(
     "GitHub repository: "
     "[malkia777/IND320---Project](https://github.com/malkia777/IND320---Project)"
 )
-st.markdown("Streamlit app: https://share.streamlit.io/user/malkia777")
+st.markdown("Streamlit app:")
