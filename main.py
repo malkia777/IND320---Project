@@ -7,6 +7,7 @@ st.set_page_config(
  
 
 pages = [
+    st.Page("main.py", title="Main")
     st.Page("Pages/2_Data_Table.py", title="Data Table"),
     st.Page("Pages/3_Plots.py", title="Plots"),
     st.Page("Pages/4_Page_Four.py", title="Page 4"),
