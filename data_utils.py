@@ -1,11 +1,27 @@
-from pymongo import MongoClient
-uri = "mongodb://moi:v8E9aoZ6U5BkE3YI@ac-e3acgzz-shard-00-00.ylhzttp.mongodb.net:27017,ac-e3acgzz-shard-00-01.ylhzttp.mongodb.net:27017,ac-e3acgzz-shard-00-02.ylhzttp.mongodb.net:27017/?ssl=true&replicaSet=atlas-j59stf-shard-0&authSource=admin"
-client = MongoClient(uri)
-try:
-    client.admin.command("ping")
-    print("Connected successfully")
-    client.close()
+# mongodb.py
+import streamlit as st
+import pymongo
 
-except Exception as e:
-    raise Exception(
-        "The following error occurred: ", e)
+# Initialize connection.
+# Uses st.cache_resource to only run once.
+@st.cache_resource
+def init_connection():
+    return pymongo.MongoClient(st.secrets["mongo"]["uri"])
+
+client = init_connection()
+
+# Pull data from the collection.
+# Uses st.cache_data to only rerun when the query changes or after 10 min.
+@st.cache_data(ttl=600)
+def get_data():
+    db = client['example']
+    collection = db['data']
+    items = collection.find()
+    items = list(items)
+    return items
+
+items = get_data()
+
+# Print results.
+for item in items:
+    st.write(f"{item['name']} is {item['age']} years old")
