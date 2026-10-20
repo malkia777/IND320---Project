@@ -15,7 +15,7 @@ def home():
 
         - **Data Table**: View reservoir data with sparklines.
         - **Plots**: Explore reservoir data by column and month.
-        - **Page 4**: Additional project content.
+        - **Page 4**: Electricity transfer data.
         """
     )
     st.markdown("---")
@@ -29,7 +29,7 @@ pages = [
     st.Page(home, title="Home", default=True),
     st.Page("Pages/2_Data_Table.py", title="Data Table"),
     st.Page("Pages/3_Plots.py", title="Plots"),
-    st.Page("Pages/4_Page_Four.py", title="Page 4"),
+    st.Page("Pages/4_Page_Four.py", title="Electricity transfer"),
 ]
 
 navigation = st.navigation(pages, position="sidebar")
