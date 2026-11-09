@@ -38,6 +38,7 @@ table = (
 
 st.write(f"Showing {area_type}, {month_start:%Y-%m}")
 
+
 st.dataframe(
     table,
     column_config={

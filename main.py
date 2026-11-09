@@ -30,6 +30,8 @@ pages = [
     st.Page("Pages/2_Data_Table.py", title="Data Table"),
     st.Page("Pages/3_Plots.py", title="Plots"),
     st.Page("Pages/4_Page_Four.py", title="Electricity transfer"),
+    st.Page("Pages/5_Reservoir_Analysis.py", title="Reservoir Analysis"),
+    st.Page("Pages/6_Weather_Analysis.py", title="Weather Analysis"),
 ]
 
 navigation = st.navigation(pages, position="sidebar")

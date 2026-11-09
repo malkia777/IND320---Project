@@ -38,9 +38,14 @@ if not connections:
     st.info("No data have been uploaded yet.")
     st.stop()
 
-left, right = st.columns(2)
+#give the daily flow chart more room
+left, right = st.columns([1, 2])
+
+#use the same colours for each direction in both charts
+colors = {"into Norway": "tab:blue", "out of Norway": "tab:orange"}
 
 with left:
+    st.subheader("Annual transfers")
     connection = st.radio("Connection", connections)
     df = load_data(connection)
 
@@ -71,18 +76,20 @@ with left:
             labels=annual.index,
             autopct="%1.1f%%",
             startangle=90,
+            colors=[colors[direction] for direction in annual.index],
         )
         ax.set_title(f"{connection}: estimated energy, {year}")
         st.pyplot(fig)
         plt.close(fig)
 
     # Show coverage so partial years are not mistaken for complete years.
-    st.write("Observed hours used in the pie chart:")
-    st.dataframe(
-        energy.groupby("direction")["hours"].sum().rename("Hours")
-    )
+    with st.expander("Observed hours used in the pie chart"):
+        st.dataframe(
+            energy.groupby("direction")["hours"].sum().rename("Hours")
+        )
 
 with right:
+    st.subheader("Daily flow")
     months = st.pills(
         "Months",
         options=list(range(1, 13)),
@@ -100,9 +107,7 @@ with right:
 
         # Plot each direction separately.
         for direction, group in selected.groupby("direction"):
-            color = (
-                "tab:blue" if direction == "into Norway" else "tab:orange"
-            )
+            color = (colors[direction])
 
             # Separate months prevent lines crossing unselected months.
             for index, (_, month_data) in enumerate(
