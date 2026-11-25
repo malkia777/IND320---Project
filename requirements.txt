@@ -1,3 +1,9 @@
 streamlit
 pandas
+requests
 matplotlib
+pymongo
+numpy
+statsmodels
+scipy
+scikit-learn
