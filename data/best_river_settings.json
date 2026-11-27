@@ -1,0 +1,14 @@
+{
+  "history_weeks": null,
+  "learning_rate": 0.004717214994748822,
+  "l2": 0.0024605991978133538,
+  "sources": [
+    "weather"
+  ],
+  "lags": [
+    1,
+    2,
+    4
+  ],
+  "horizon": 13
+}
