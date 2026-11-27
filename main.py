@@ -293,20 +293,20 @@ def home():
 pages = {
     "Start here": [
         st.Page(home, title="Home", default=True),
-        st.Page("pages/9_Map.py", title="Map and area selection"),
+        st.Page("Pages/9_Map.py", title="Map and area selection"),
     ],
     "Explore data": [
-        st.Page("pages/2_Data_Table.py", title="Data overview"),
-        st.Page("pages/3_Plots.py", title="Reservoir plots"),
-        st.Page("pages/4_Page_Four.py", title="Electricity transfers"),
-        st.Page("pages/7_Currency.py", title="Currency"),
+        st.Page("Pages/2_Data_Table.py", title="Data overview"),
+        st.Page("Pages/3_Plots.py", title="Reservoir plots"),
+        st.Page("Pages/4_Page_Four.py", title="Electricity transfers"),
+        st.Page("Pages/7_Currency.py", title="Currency"),
     ],
     "Analyse patterns": [
-        st.Page("pages/5_Reservoir_Analysis.py", title="Reservoir analysis"),
-        st.Page("pages/6_Weather_Analysis.py", title="Weather and correlation"),
+        st.Page("Pages/5_Reservoir_Analysis.py", title="Reservoir analysis"),
+        st.Page("Pages/6_Weather_Analysis.py", title="Weather and correlation"),
     ],
     "Predict": [
-        st.Page("pages/8_Forecasting.py", title="Forecasting"),
+        st.Page("Pages/8_Forecasting.py", title="Forecasting"),
     ],
 }
 
