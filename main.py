@@ -194,9 +194,9 @@ def home():
             "View reservoir measurements, compare areas "
             "and explore electricity transfers."
         )
-        st.page_link("pages/2_Data_Table.py", label="View data tables")
-        st.page_link("pages/3_Plots.py", label="Explore reservoir plots")
-        st.page_link("pages/4_Page_Four.py", label="Explore electricity transfers")
+        st.page_link("Pages/2_Data_Table.py", label="View data tables")
+        st.page_link("Pages/3_Plots.py", label="Explore reservoir plots")
+        st.page_link("Pages/4_Page_Four.py", label="Explore electricity transfers")
 
     with middle:
         st.markdown(
@@ -226,8 +226,8 @@ def home():
             "Investigate reservoir trends and seasonality, "
             "and identify unusual weather observations."
         )
-        st.page_link("pages/5_Reservoir_Analysis.py", label="Analyse reservoirs")
-        st.page_link("pages/6_Weather_Analysis.py", label="Analyse weather")
+        st.page_link("Pages/5_Reservoir_Analysis.py", label="Analyse reservoirs")
+        st.page_link("Pages/6_Weather_Analysis.py", label="Analyse weather")
 
     with right:
         st.markdown(
@@ -255,8 +255,8 @@ def home():
             "Use River to predict reservoir filling for the coming "
             "months and compare predictions with historical observations."
         )
-        st.page_link("pages/8_Forecasting.py", label="Forecast reservoir filling")
-        st.page_link("pages/7_Currency.py", label="Explore currency exchange rates")
+        st.page_link("Pages/8_Forecasting.py", label="Forecast reservoir filling")
+        st.page_link("Pages/7_Currency.py", label="Explore currency exchange rates")
 
     st.divider()
 
